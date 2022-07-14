@@ -28,8 +28,8 @@ extract FILE [FILE ...]
 
 | Supported | Extension         | Description                          |
 | :-------: | :---------------- | :----------------------------------- |
-|    ❌     | `7z`              | 7zip file                            |
-|    ❌     | `Z`               | Z archive (LZW)                      |
+|    ✅     | `7z`              | 7zip file                            |
+|    ✅     | `Z`               | Z archive (LZW)                      |
 |    ❌     | `aar`             | Android library file                 |
 |    ❌     | `apk`             | Android app file                     |
 |    ✅     | `bz2`             | Bzip2 file                           |
@@ -49,15 +49,16 @@ extract FILE [FILE ...]
 |    ❌     | `sublime-package` | Sublime Text package                 |
 |    ✅     | `tar.bz2`, `tbz2` | Tarball with bzip2 compression       |
 |    ✅     | `tar.gz`, `tgz`   | Tarball with gzip compression        |
-|    ❌     | `tar.lrz`         | Tarball with lrzip compression       |
-|    ❌     | `tar.lz4`         | Tarball with lz4 compression         |
-|    ❌     | `tar.lz`          | Tarball with lzip compression        |
+|    ✅     | `tar.lzo`         | Tarball with lzop compression        |
+|    ✅     | `tar.lz4`         | Tarball with lz4 compression         |
+|    ✅     | `tar.lz`          | Tarball with lzip compression        |
+|    ✅     | `tar.lrz`         | Tarball with lrzip compression       |
 |    ✅     | `tar.xz`, `txz`   | Tarball with lzma2 compression       |
-|    ❌     | `tar.zma`, `tlz`  | Tarball with lzma compression        |
-|    ❌     | `tar.zst`, `tzst` | Tarball with zstd compression        |
+|    ✅     | `tar.zma`, `tlz`  | Tarball with lzma compression        |
+|    ✅     | `tar.zst`, `tzst` | Tarball with zstd compression        |
+|    ✅     | `tar.Z`, `taz`    | Tarball with LZW compression         |
 |    ✅     | `tar`             | Tarball                              |
 |    ✅     | `tbz`             | Tarball with bzip compression        |
-|    ❌     | `tzst`            | Tarball with zstd compression        |
 |    ❌     | `war`             | Web Application archive (Java-based) |
 |    ❌     | `xpi`             | Mozilla XPI module file              |
 |    ✅     | `xz`              | LZMA2 archive                        |
