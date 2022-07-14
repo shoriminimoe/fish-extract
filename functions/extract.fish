@@ -1,38 +1,49 @@
 function _extract_help
-  echo "usage: extract ARCHIVE"
+  echo "usage: extract FILE [FILE ...]"
 end
 
 
-function extract
+function extract -d "Extract archives"
   if test (count $argv) -lt 1
     _extract_help
     return 1
   end
 
-  set file $argv[1]
+  for file in $argv
+    switch $file
+      case '*.tar'
+        tar xvf "$file"
 
-  switch $file
-    case '*.tar.gz' '*.tgz'
-      tar xvzf "$file"
+      case '*.tar.gz' '*.tgz'
+        tar xvzf "$file"
 
-    case '*.tar.bz2' '*.tbz' '*.tbz2'
-      tar xvjf "$file"
+      case '*.tar.bz2' '*.tbz' '*.tbz2'
+        tar xvjf "$file"
 
-    case '*.tar'
-      tar xvf "$file"
+      case '*.tar.xz' '*.txz'
+        tar xvJf "$file"
 
-    case '*.gz'
-      gunzip -k "$file"
+      case '*.tar.zma' '*.tlz'
+        tar --lzma xvf "$file"
 
-    case '*.bz2'
-      bunzip2 "$file"
+      case '*.gz'
+        gunzip --keep "$file"
 
-    case '*.zip'
-      unzip "$file"
+      case '*.bz2'
+        bunzip2 --keep "$file"
 
-    case '*'
-      echo "extract: cannot extract '$file': no extractor implemented for file type"
-      return 1
+      case '*.xz'
+        unxz --keep "$file"
+
+      case '*.lzma'
+        unlzma --keep "$file"
+
+      case '*.zip'
+        unzip "$file"
+
+      case '*'
+        echo "extract: failed to extract '$file': no extractor implemented for file type"
+    end
   end
 
   if test $status -ne 0
