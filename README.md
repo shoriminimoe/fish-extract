@@ -18,6 +18,12 @@ Install using [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish):
 omf install shoriminimoe/fish-extract
 ```
 
+Manual install:
+```sh
+mkdir -p ~/.config/fish/functions
+curl https://raw.githubusercontent.com/shoriminimoe/fish-extract/main/functions/extract.fish >~/.config/fish/functions/extract.fish
+```
+
 ## Usage
 
 ```sh
