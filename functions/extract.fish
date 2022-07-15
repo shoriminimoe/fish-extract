@@ -12,18 +12,14 @@ function extract -d "Extract archives"
   set failed false
 
   for file in $argv
-    breakpoint
     switch $file
-      case '*.7z'
-        7zz x "$file"
-
       case '*.tar'
         tar xvf "$file"
 
       case '*.tar.gz' '*.tgz'
         tar xvzf "$file"
 
-      case '*.tar.bz2' '*.tbz' '*.tbz2'
+      case '*.tar.bz2' '*.tar.bz' '*.tbz' '*.tbz2'
         tar xvjf "$file"
 
       case '*.tar.xz' '*.txz'
@@ -38,9 +34,6 @@ function extract -d "Extract archives"
       case '*.tar.lzma' '*.tar.zma' '*.tlz'
         tar --lzma -xvf "$file"
 
-      case '*.lrz'
-        lrzunzip "$file"
-
       case '*.tar.lrz'
         lrzuntar "$file"
 
@@ -48,19 +41,28 @@ function extract -d "Extract archives"
         tar --lzip -xvf "$file"
 
       case '*.tar.lz4'
-        unlz4 --to-stdout "$file" | tar xv
+        tar --use-compress-program=lz4 -xvf "$file"
 
       case '*.tar.lzo'
         tar --lzop -xvf "$file"
 
+      case '*.7z'
+        7zz x "$file"
+
       case '*.gz'
         gunzip --keep "$file"
 
-      case '*.bz2'
+      case '*.bz2' '*.bz'
         bunzip2 --keep "$file"
 
       case '*.xz'
         unxz --keep "$file"
+
+      case '*.lrz'
+        lrunzip "$file"
+
+      case '*.lz4'
+        unlz4 "$file" (string replace --regex '.lz4$' '' "$file")
 
       case '*.lzma'
         unlzma --keep "$file"
@@ -69,7 +71,13 @@ function extract -d "Extract archives"
         unzip "$file"
 
       case '*.Z'
-        uncompress "$file"
+        uncompress --keep "$file"
+
+      case '*.zst'
+        unzstd --keep "$file"
+
+      case '*.zz'
+        unpigz --keep "$file"
 
       case '*'
         echo >&2 "extract: failed to extract '$file': no extractor implemented for file type"
