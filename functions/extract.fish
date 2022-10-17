@@ -94,9 +94,3 @@ function extract -d "Extract archives"
     return 1
   end
 end
-
-
-function x
-  extract $argv
-end
-
