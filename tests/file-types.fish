@@ -37,6 +37,9 @@ cp bwah.bz2 bwah.bz
 # gzip
 gzip --keep bwah
 
+# jar
+zip --quiet bwah.jar bwah
+
 # lrzip
 lrzip --very-quiet bwah
 
@@ -67,6 +70,7 @@ set --local test_files \
   bwah.bz \
   bwah.bz2 \
   bwah.gz \
+  bwah.jar \
   bwah.lrz \
   bwah.lz4 \
   bwah.lzma \
