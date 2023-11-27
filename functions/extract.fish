@@ -67,7 +67,7 @@ function extract -d "Extract archives"
             case '*.lzma'
                 unlzma --keep "$file"
 
-            case '*.zip'
+            case '*.zip' '*.xpi'
                 unzip "$file"
 
             case '*.Z'

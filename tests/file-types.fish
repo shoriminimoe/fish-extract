@@ -49,6 +49,9 @@ lzma --quiet --keep bwah
 # lzma2
 xz --quiet --keep bwah
 
+# xpi
+zip --quiet bwah.xpi bwah
+
 # zip
 zip --quiet bwah.zip bwah
 
@@ -87,6 +90,7 @@ set --local test_files \
   bwah.tlz \
   bwah.txz \
   bwah.tzst \
+  bwah.xpi \
   bwah.xz \
   bwah.zip \
   bwah.zz \
