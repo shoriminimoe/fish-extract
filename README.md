@@ -19,6 +19,7 @@ omf install shoriminimoe/fish-extract
 ```
 
 Manual install:
+
 ```sh
 mkdir -p ~/.config/fish/functions
 curl https://raw.githubusercontent.com/shoriminimoe/fish-extract/main/functions/extract.fish >~/.config/fish/functions/extract.fish
@@ -38,6 +39,7 @@ extract FILE [FILE ...]
 |    ✅     | `Z`                          | Z archive (LZW)                      |
 |    ✅     | `bz2`, `bz`                  | Bzip2 file                           |
 |    ✅     | `gz`                         | Gzip file                            |
+|    ✅     | `jar`                        | Java Archive                         |
 |    ✅     | `lrz`                        | LRZ archive                          |
 |    ✅     | `lz4`                        | LZ4 archive                          |
 |    ✅     | `lzma`                       | LZMA archive                         |
@@ -53,6 +55,7 @@ extract FILE [FILE ...]
 |    ✅     | `tar.lzma`, `tar.zma`, `tlz` | Tarball with lzma compression        |
 |    ✅     | `tar.zst`, `tzst`            | Tarball with zstd compression        |
 |    ✅     | `tar`                        | Tarball                              |
+|    ✅     | `xpi`                        | Mozilla XPI module file              |
 |    ✅     | `xz`                         | LZMA2 archive                        |
 |    ✅     | `zip`                        | Zip archive                          |
 |    ✅     | `zst`                        | Zstandard file (zstd)                |
@@ -65,9 +68,7 @@ extract FILE [FILE ...]
 |    ❌     | `ear`                        | Enterprise Application aRchive       |
 |    ❌     | `ipa`                        | iOS app package                      |
 |    ❌     | `ipsw`                       | iOS firmware file                    |
-|    ❌     | `jar`                        | Java Archive                         |
 |    ❌     | `rar`                        | WinRAR archive                       |
 |    ❌     | `rpm`                        | RPM package                          |
 |    ❌     | `sublime-package`            | Sublime Text package                 |
 |    ❌     | `war`                        | Web Application archive (Java-based) |
-|    ❌     | `xpi`                        | Mozilla XPI module file              |
