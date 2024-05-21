@@ -2,6 +2,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
@@ -26,7 +27,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: fish-actions/install-fish@v1
-      # FIXME: need dependencies installed here
+      - uses: melusina-org/setup-macports@v1
+        if: matrix.os == 'macos-latest'
+      - name: Install dependencies
+        run: bash tests/install-dependencies.sh
       - uses: fish-shop/run-fishtape-tests@v1
         with:
           pattern: tests/**.fish

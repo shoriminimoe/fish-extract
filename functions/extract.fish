@@ -71,7 +71,7 @@ function extract -d "Extract archives"
                 unzip "$file"
 
             case '*.Z'
-                uncompress --keep "$file"
+                uncompress -k "$file"
 
             case '*.zst'
                 unzstd --keep "$file"
