@@ -22,7 +22,7 @@ cp bwah.tar.zst bwah.tzst
 tar --compress -cf bwah.tar.Z bwah
 cp bwah.tar.Z bwah.taz
 lz4 --quiet bwah.tar bwah.tar.lz4
-lrzip --very-quiet bwah.tar
+lrzip --quiet bwah.tar
 
 # 7z
 7zz a bwah.7z bwah >/dev/null
@@ -41,7 +41,7 @@ gzip --keep bwah
 zip --quiet bwah.jar bwah
 
 # lrzip
-lrzip --very-quiet bwah
+lrzip --quiet bwah
 
 # lz4
 lz4 --quiet bwah bwah.lz4
@@ -65,49 +65,49 @@ zstd --force bwah 2>/dev/null
 pigz --zlib --keep bwah
 
 set --local test_files \
-  bwah.7z \
-  bwah.Z \
-  bwah.bz \
-  bwah.bz2 \
-  bwah.gz \
-  bwah.jar \
-  bwah.lrz \
-  bwah.lz4 \
-  bwah.lzma \
-  bwah.tar \
-  bwah.tar.Z \
-  bwah.tar.bz \
-  bwah.tar.bz2 \
-  bwah.tar.gz \
-  bwah.tar.lrz \
-  bwah.tar.lz \
-  bwah.tar.lz4 \
-  bwah.tar.lzma \
-  bwah.tar.lzo \
-  bwah.tar.xz \
-  bwah.tar.zma \
-  bwah.tar.zst \
-  bwah.taz \
-  bwah.tbz \
-  bwah.tbz2 \
-  bwah.tgz \
-  bwah.tlz \
-  bwah.txz \
-  bwah.tzst \
-  bwah.xpi \
-  bwah.xz \
-  bwah.zip \
-  bwah.zz \
-  bwah.zst
+    bwah.7z \
+    bwah.Z \
+    bwah.bz \
+    bwah.bz2 \
+    bwah.gz \
+    bwah.jar \
+    bwah.lrz \
+    bwah.lz4 \
+    bwah.lzma \
+    bwah.tar \
+    bwah.tar.Z \
+    bwah.tar.bz \
+    bwah.tar.bz2 \
+    bwah.tar.gz \
+    bwah.tar.lrz \
+    bwah.tar.lz \
+    bwah.tar.lz4 \
+    bwah.tar.lzma \
+    bwah.tar.lzo \
+    bwah.tar.xz \
+    bwah.tar.zma \
+    bwah.tar.zst \
+    bwah.taz \
+    bwah.tbz \
+    bwah.tbz2 \
+    bwah.tgz \
+    bwah.tlz \
+    bwah.txz \
+    bwah.tzst \
+    bwah.xpi \
+    bwah.xz \
+    bwah.zip \
+    bwah.zz \
+    bwah.zst
 
 for file in $test_files
-  rm -f bwah
-  @echo === extract $file ===
-  @test "archive exists" -f $file
-  @test "extract $file" (extract $file >/dev/null) $status -eq 0
-  @test "archive remains" -f $file
-  @test "bwah is present" -f bwah
-  rm -f $file
+    rm -f bwah
+    @echo === extract $file ===
+    @test "archive exists" -f $file
+    @test "extract $file" (extract $file >/dev/null) $status -eq 0
+    @test "archive remains" -f $file
+    @test "bwah is present" -f bwah
+    rm -f $file
 end
 
 rm -f bwah
