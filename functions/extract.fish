@@ -9,42 +9,50 @@ function extract -d "Extract archives"
         return 1
     end
 
+    if command -v gtar
+        # use GNU tar if available. This is what gnu-tar is installed as on
+        # macOS.
+        set tar gtar
+    else
+        set tar tar
+    end
+
     set failed false
 
     for file in $argv
         switch $file
             case '*.tar'
-                tar xvf "$file"
+                $tar xvf "$file"
 
             case '*.tar.gz' '*.tgz'
-                tar xvzf "$file"
+                $tar xvzf "$file"
 
             case '*.tar.bz2' '*.tar.bz' '*.tbz' '*.tbz2'
-                tar xvjf "$file"
+                $tar xvjf "$file"
 
             case '*.tar.xz' '*.txz'
-                tar xvJf "$file"
+                $tar xvJf "$file"
 
             case '*.tar.Z' '*.taz'
-                tar xvZf "$file"
+                $tar xvZf "$file"
 
             case '*.tar.zst' '*.tzst'
-                tar --zstd -xvf "$file"
+                $tar --zstd -xvf "$file"
 
             case '*.tar.lzma' '*.tar.zma' '*.tlz'
-                tar --lzma -xvf "$file"
+                $tar --lzma -xvf "$file"
 
             case '*.tar.lrz'
                 lrzuntar "$file"
 
             case '*.tar.lz'
-                tar --lzip -xvf "$file"
+                $tar --lzip -xvf "$file"
 
             case '*.tar.lz4'
-                tar --use-compress-program=lz4 -xvf "$file"
+                $tar --use-compress-program=lz4 -xvf "$file"
 
             case '*.tar.lzo'
-                tar --lzop -xvf "$file"
+                $tar --lzop -xvf "$file"
 
             case '*.7z'
                 7zz x "$file"

@@ -1,9 +1,5 @@
 source functions/extract.fish
 
-if uname -s | grep -q Darwin
-    alias tar gtar
-end
-
 touch bwah
 
 # tar
