@@ -50,7 +50,7 @@ jobs:
         uses: fish-shop/install-plugin@v2
         with:
           plugin-manager: ${{ matrix.plugin-manager }}
-          plugins: (pwd)
+          plugins: ${{ github.workspace }}
 
       - name: Check plugin is installed
         run: functions -q extract x
