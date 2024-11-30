@@ -54,7 +54,7 @@ function extract -d "Extract archives"
             case '*.tar.lzo'
                 $tar --lzop -xvf "$file"
 
-            case '*.7z'
+            case '*.7z' '*.iso'
                 7zz x "$file"
 
             case '*.gz'

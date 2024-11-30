@@ -39,6 +39,7 @@ extract FILE [FILE ...]
 |    ✅     | `Z`                          | Z archive (LZW)                      |
 |    ✅     | `bz2`, `bz`                  | Bzip2 file                           |
 |    ✅     | `gz`                         | Gzip file                            |
+|    ✅     | `iso`                        | Optical Disc Image                   |
 |    ✅     | `jar`                        | Java Archive                         |
 |    ✅     | `lrz`                        | LRZ archive                          |
 |    ✅     | `lz4`                        | LZ4 archive                          |
