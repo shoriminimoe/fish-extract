@@ -20,7 +20,10 @@ install_linux() {
 		zstd
 
 	tmpdir=$(mktemp -d)
-	wget -O "$tmpdir/7zip.tar.xz" https://www.7-zip.org/a/7z2405-linux-x64.tar.xz
+	sevenzip_url="https://github.com/ip7z/7zip/releases/download/24.05/7z2405-linux-x64.tar.xz"
+	sevenzip_sha256="7294f7478d90d2dc122137ff64607d354c66bd45b10911359658b85ca8892118"
+	wget -O "$tmpdir/7zip.tar.xz" "$sevenzip_url"
+	echo "$sevenzip_sha256  $tmpdir/7zip.tar.xz" | sha256sum -c -
 	tar xf "$tmpdir/7zip.tar.xz" -C "$tmpdir"
 	sudo mv -t /usr/local/bin/ "$tmpdir/7zz"
 }
