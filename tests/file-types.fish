@@ -1,6 +1,11 @@
 source functions/extract.fish
 
+set --local tmpdir (mktemp -d)
+pushd $tmpdir
+
 touch bwah
+echo "fish-extract test content" >bwah
+set --local original_content (cat bwah)
 
 # tar
 tar cf bwah.tar bwah
@@ -107,7 +112,10 @@ for file in $test_files
     @test "extract $file" (extract $file >/dev/null) $status -eq 0
     @test "archive remains" -f $file
     @test "bwah is present" -f bwah
+    @test "bwah content matches" (cat bwah) = $original_content
     rm -f $file
 end
 
 rm -f bwah
+popd
+rm -rf $tmpdir
