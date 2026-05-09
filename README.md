@@ -37,7 +37,17 @@ The `x` alias is also installed; `x FILE [FILE ...]` is equivalent.
 
 ## Development
 
-Run the test suite with [fishtape](https://github.com/jorgebucaran/fishtape):
+Run the test suite with [fishtape](https://github.com/jorgebucaran/fishtape).
+
+On Linux (or any Docker host) the recommended path is the bundled `Dockerfile`,
+which has every archive tool plus fishtape baked in:
+
+```sh
+docker build -t fish-extract-test .
+docker run --rm -v "$PWD":/workspace fish-extract-test -c 'fishtape tests/file-types.fish'
+```
+
+On macOS, install dependencies natively and run fishtape directly:
 
 ```sh
 bash tests/install-dependencies.sh    # one-time, installs archive tools

@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   lint:
@@ -20,19 +21,29 @@ jobs:
       - uses: fish-actions/install-fish@v1
       - uses: fish-shop/syntax-check@v1
 
-  test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+  test-linux:
+    runs-on: ubuntu-latest
 
-    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: fish-extract-test:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Run fishtape in container
+        run: docker run --rm -v "$PWD":/workspace fish-extract-test:ci -c 'fishtape tests/file-types.fish'
+
+  test-macos:
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: fish-actions/install-fish@v1
       - uses: melusina-org/setup-macports@v1
-        if: matrix.os == 'macos-latest'
       - name: Install dependencies
         run: bash tests/install-dependencies.sh
       - uses: fish-shop/run-fishtape-tests@v1
