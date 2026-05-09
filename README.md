@@ -1,5 +1,7 @@
 # fish-extract
 
+[![CI](https://github.com/shoriminimoe/fish-extract/actions/workflows/ci.yaml/badge.svg)](https://github.com/shoriminimoe/fish-extract/actions/workflows/ci.yaml)
+
 An archive extraction plugin for
 [fish-shell](https://github.com/fish-shell/fish-shell). Inspired by the
 [oh-my-zsh extract plugin](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/extract).
@@ -29,6 +31,23 @@ curl https://raw.githubusercontent.com/shoriminimoe/fish-extract/main/functions/
 
 ```sh
 extract FILE [FILE ...]
+```
+
+The `x` alias is also installed; `x FILE [FILE ...]` is equivalent.
+
+## Development
+
+Run the test suite with [fishtape](https://github.com/jorgebucaran/fishtape):
+
+```sh
+bash tests/install-dependencies.sh    # one-time, installs archive tools
+fishtape tests/file-types.fish
+```
+
+[pre-commit](https://pre-commit.com/) hooks (`fish_indent`, `fish_syntax`, `gitlint`) are configured in `.pre-commit-config.yaml`:
+
+```sh
+pre-commit install
 ```
 
 ## Supported Formats
