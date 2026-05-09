@@ -8,24 +8,28 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: fish-actions/install-fish@v1
       - uses: fish-shop/syntax-check@v1
 
   test:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: fish-actions/install-fish@v1
       - uses: melusina-org/setup-macports@v1
         if: matrix.os == 'macos-latest'
@@ -37,6 +41,7 @@ jobs:
 
   install:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
         plugin-manager: [fisher, oh-my-fish]
