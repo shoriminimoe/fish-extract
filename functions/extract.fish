@@ -4,20 +4,27 @@ end
 
 
 function extract -d "Extract archives"
+    argparse --name=extract h/help -- $argv
+    or return 1
+
+    if set -q _flag_help
+        _extract_help
+        return 0
+    end
+
     if test (count $argv) -lt 1
         _extract_help
         return 1
     end
 
-    if command -v gtar
+    set --local tar tar
+    if command -q gtar
         # use GNU tar if available. This is what gnu-tar is installed as on
         # macOS.
         set tar gtar
-    else
-        set tar tar
     end
 
-    set failed false
+    set --local failed false
 
     for file in $argv
         switch $file
@@ -70,7 +77,7 @@ function extract -d "Extract archives"
                 lrunzip "$file"
 
             case '*.lz4'
-                unlz4 "$file" (string replace --regex '.lz4$' '' "$file")
+                unlz4 "$file" (string replace --regex '\.lz4$' '' "$file")
 
             case '*.lzma'
                 unlzma --keep "$file"
@@ -90,6 +97,7 @@ function extract -d "Extract archives"
             case '*'
                 echo >&2 "extract: failed to extract '$file': no extractor implemented for file type"
                 set failed true
+                continue
         end
 
         if test $status -ne 0
